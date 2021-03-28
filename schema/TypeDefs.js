@@ -5,26 +5,28 @@ const { gql } = require("apollo-server");
 // your data.
 
 exports.typeDefs = gql`
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+  type User {
+    id: Int
+    fullName: String
+    email: String
+    password: String
+    posts: [Post]
+  }
 
-  # This "Book" type defines the queryable fields for every book in our data source.
-  type Posts {
+  type Post {
+    id: Int
     title: String
     content: String
-    user: User
+    userPost: User
   }
 
-  type User {
-    fullName: String
-  }
-
-  # Query
   type Query {
-    getAllPosts: [Posts!]!
+    getAllUsers: [User]
+    getAllPosts: [Post]
   }
 
-  # Mutation
   type Mutation {
-    createPost(title: String, content: String, fullName: String): Posts
+    addUser(fullName: String, email: String, password: String): User
+    addPost(title: String, content: String, userId: Int): Post
   }
 `;
