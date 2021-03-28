@@ -28,5 +28,8 @@ exports.typeDefs = gql`
   type Mutation {
     addUser(fullName: String, email: String, password: String): User
     addPost(title: String, content: String, userId: Int): Post
+    getPostById(id: Int): Post
+    deletePost(id: Int): Int
+    updatePost(id: Int, title: String, content: String): Post
   }
 `;
